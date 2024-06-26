@@ -23,10 +23,16 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    console.log(`👋 Client connected: ${socket.id}`);
+    console.log(`👋 - Client connected: ${socket.id}`);
 
     socket.on('disconnect', (reason) => {
-        console.log(`⚠️ Disconnected due to - ${reason}`)
+        console.log(`⚠️ - Disconnected due to: ${reason}`)
+    });
+
+    // Getting the message from client and sending it back
+    socket.on('send_message', (message) => {
+        // console.log(message);
+        socket.broadcast.emit('receive_message', message);
     })
 })
 
