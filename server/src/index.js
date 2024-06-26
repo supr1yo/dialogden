@@ -30,9 +30,9 @@ io.on('connection', (socket) => {
     });
 
     // Getting the message from client and sending it back
-    socket.on('send_message', (message) => {
+    socket.on('send_message', (data) => {
         // console.log(message);
-        socket.broadcast.emit('receive_message', message);
+        socket.broadcast.emit('receive_message', data);
     })
 })
 
